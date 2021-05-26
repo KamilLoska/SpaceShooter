@@ -12,7 +12,7 @@ A special "boss ship" will apears when we reach the 3  level of game.
 Boss attempt to destroy the ship by firing to us normal bullets and extra bullets taking more health points from us.
 After destroy boss ship we see the end animation and our results by how much time did the game take us and the game comes to an end, we can play again by pressing the "G" key.
 
-![PressPtoStart (1)](https://user-images.githubusercontent.com/72936376/119695643-adf25b00-be4e-11eb-81cc-75bd9945ba81.png)
+![PressPtoStart (2)](https://user-images.githubusercontent.com/72936376/119695765-cebab080-be4e-11eb-9c5f-9fc3f3ce5d4d.png)
 
 
 
