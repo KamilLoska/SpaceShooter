@@ -15,8 +15,10 @@ After destroy boss ship we see the end animation and our results by how much tim
 ![PressPtoStart (1)](https://user-images.githubusercontent.com/72936376/119696623-aed7bc80-be4f-11eb-9bb1-aa2ffb1635b5.png)
 
 
-
 ![DeemoGame (1)](https://user-images.githubusercontent.com/72936376/119697069-1d1c7f00-be50-11eb-8593-408e1cd7b450.png)
+
+
+![pauseGame (1)](https://user-images.githubusercontent.com/72936376/119699177-29a1d700-be52-11eb-8f23-4761cb6ee4c1.png)
 
 
 ![youdied (1)](https://user-images.githubusercontent.com/72936376/119697394-708ecd00-be50-11eb-856b-f3aead6ebe2b.png)
