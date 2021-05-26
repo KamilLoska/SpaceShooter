@@ -59,7 +59,7 @@ def game():
     gf.AniExplosion(explosion, bosss)
     #gf.create_bosss(ai_settings, screen, aliens, bosss, boss_bullet, new_bullet, extra_bullet, HPbar, player, explosion)
     menu = True
-    menu2 = False
+    menu2 = True
     loop = True
     background11 = pygame.image.load('C:/Users/Kamil/Pictures/background11.png')
     image1 = pygame.image.load('C:/Users/Kamil/Pictures/youwin2.png')
@@ -71,30 +71,35 @@ def game():
     miliseconds = 0
     sb = Scoreboard(ai_settings, screen, stats)
     #GŁÓWNA PĘTLA GRY
+
     while loop:
         timelabel = myfont.render("{}:{}:{}".format(minutes, seconds, miliseconds), 1, (70, 0, 90))
         txt = myfont.render("TIME:  {}:{}:{} ".format(minutes, seconds, miliseconds), 1, (70, 0, 90))
         if miliseconds >1000:
             seconds += 1
-            miliseconds -= 1000
+            miliseconds = 0
         miliseconds += clock.get_rawtime()
         if seconds > 60:
             minutes += 1
             seconds -= 60
-        if stats.game_active == False:
-            miliseconds = int(float(".{}".format(miliseconds)))
-
+        if player.health <= 0 or stats.ships_left <= 0:
             while menu2:
                 for event in pygame.event.get():
                     if event.type == pygame.KEYDOWN:
                         if event.key == K_g:
                             menu2 = False
                             game()
-
-                clock.tick(30)
-                screen.fill((0, 0, 0))
-                screen.blit(youlost, (0, 0))
+                    # miliseconds = int(float(".{}".format(miliseconds)))
+                miliseconds -= miliseconds
+                gf.time_txt(screen, txt, youlost)
+                #clock.tick(30)
+                #screen.fill((0, 0, 0))
                 pygame.display.update()
+
+
+
+
+
         for expl in explosion:
             if HPbar.Health <=4 and expl.index >=9:
                 while menu2:
@@ -124,20 +129,32 @@ def game():
 
         gf.check_events(ai_settings, screen, player, new_bullet, aliens, boss_bullet, bosss,all_sprites, pos, HPbar,
                         extra_bullet, explosion, stats, sb)
+
         if stats.game_active:
+
             player.update()
             new_bullet.update()
             gf.update_bullets(ai_settings, screen,stats,sb, player, new_bullet, aliens, bosss, boss_bullet, enemyPlayer, extra_bullet)
             gf.update_rain(ai_settings, deszcz)
             gf.update_aliens(ai_settings,stats,sb, screen, player, aliens, new_bullet, bosss, boss_bullet,extra_bullet, HPbar, explosion)
-            boss_bullet.update(bosss)
-            gf.boss_bullet_update(ai_settings, screen, bosss, boss_bullet, player, HPbar)
-            extra_bullet.update(bosss)
-            gf.extra_bullet_update(ai_settings, screen, extra_bullet, bosss, player)
+            boss_bullet.update()
+            gf.boss_bullet_update(ai_settings, screen, boss_bullet)
+            extra_bullet.update()
+            gf.extra_bullet_update(ai_settings, screen, extra_bullet, player)
             gf.update_animation(explosion, bosss)
-        gf.update_boss(ai_settings, bosss, new_bullet, HPbar)
+                #screen.blit(gf.time_txt(screen, txt), (510, 500))
+            #if player.health <= 0 or stats.ships_left <= 0:
+                #miliseconds = int(float(".{}".format(miliseconds)))
+             #   miliseconds -= miliseconds
+              #  gf.time_txt(screen, txt, youlost)
+
+        gf.update_boss(ai_settings, bosss)
         gf.update_screen(ai_settings, screen, player, bosss, deszcz, aliens, starr, new_bullet, boss_bullet,
                          all_sprites, HPbar, lost, extra_bullet, explosion,stats,sb, pause_button)
+
+
+        if not stats.game_active:
+            miliseconds = int(float(".{}".format(miliseconds)))
 
         clock.tick(FPS)
 
