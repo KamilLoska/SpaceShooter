@@ -11,6 +11,7 @@ If they reach the left side or our 3 lives falls below zero the game ends, and w
 A special "boss ship" will apears when we reach the 3  level of game.
 Boss attempt to destroy the ship by firing to us normal bullets and extra bullets taking more health points from us.
 After destroy boss ship we see the end animation and our results by how much time did the game take us and the game comes to an end, we can play again by pressing the "G" key.
+Game also has the option to pause by clicking "Z" key. 
 
 ![PressPtoStart (1)](https://user-images.githubusercontent.com/72936376/119696623-aed7bc80-be4f-11eb-9bb1-aa2ffb1635b5.png)
 
