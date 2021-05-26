@@ -39,14 +39,14 @@ def update_bullets(ai_settings, screen,stats,sb, player, new_bullet, aliens, bos
             sb.prep_score()
 
 
-def boss_bullet_update(ai_settings, screen, bosss, boss_bullet, player, hpbar):
-    boss_bullet.update(bosss)
+def boss_bullet_update(ai_settings, screen, boss_bullet):
+    boss_bullet.update()
     for bullet in boss_bullet.copy():
         if bullet.rect.left <= 0 or ai_settings.SCREEN_WIDTH < bullet.rect.left:
             boss_bullet.remove(bullet)
 
-def extra_bullet_update(ai_settings, screen, extra_bullet, bosss, player):
-    extra_bullet.update(bosss)
+def extra_bullet_update(ai_settings, screen, extra_bullet, player):
+    extra_bullet.update()
     for bullets in extra_bullet.copy():
         if bullets.rect.right <= 0 or ai_settings.SCREEN_WIDTH < bullets.rect.left:
             extra_bullet.remove(bullets)
@@ -269,15 +269,15 @@ def update_aliens(ai_settings,stats,sb, screen, player, aliens, new_bullet, boss
 
     check_aliens_left(ai_settings, stats, sb, screen, player, aliens, new_bullet, bosss, boss_bullet, extra_bullet, HPbar, explosion)
 
-def update_boss(ai_settings, bosss, new_bullet, HPbar):
+def update_boss(ai_settings, bosss):
     check_boss_fleet_edges(ai_settings, bosss)
-    bosss.update(new_bullet, HPbar)
+    bosss.update()
 
 def update_animation(explosion, bosss):
     for boss in bosss:
         for expl in explosion:
             expl.rect.center = boss.rect.center
-    explosion.update(explosion, bosss)
+    explosion.update()
 
 
 def alien_hit_player(ai_settings, stats,sb, screen, player, aliens, new_bullet, bosss, boss_bullet, extra_bullet,
@@ -323,6 +323,10 @@ def check_aliens_left(ai_settings, stats,sb, screen, player, aliens, new_bullet,
             alien_hit_player(ai_settings, stats,sb, screen, player, aliens, new_bullet, bosss, boss_bullet, extra_bullet,
                              HPbar, explosion)
         break
+def time_txt(screen, txt, youlost):
+    screen.blit(youlost, (0, 0))
+    screen.blit(txt, (480, 500))
+    #return time_txt(screen, txt, youlost)
 
 def update_screen(ai_settings, screen, player, bosss, deszcz, aliens, starr, new_bullet, boss_bullet,
                          all_sprites, HPbar, lost, extra_bullet, explosion,stats,sb, pause_button):
@@ -337,10 +341,11 @@ def update_screen(ai_settings, screen, player, bosss, deszcz, aliens, starr, new
         pause_button.draw_button()
 
     if len(aliens) == 0:
+        ai_settings.increase_speed()
         stats.level += 1
         sb.prep_ships()
         aliens.empty()
-        if stats.level > 3 and stats.ships_left > 0:
+        if stats.level >=3 and stats.ships_left >=0:
             create_bosss(ai_settings,screen,aliens, bosss, boss_bullet,new_bullet, extra_bullet, HPbar, player, explosion,stats)
         else:
          sleep(0.2)
@@ -349,7 +354,7 @@ def update_screen(ai_settings, screen, player, bosss, deszcz, aliens, starr, new
          player.player_center()
 
 
-    if player.health <= 0 or stats.ships_left <=0:
-        lost.blitme()
+    #if player.health <= 0 or stats.ships_left <=0:
+     #   lost.blitme()
     #updated screen
     pygame.display.flip()
