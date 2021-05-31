@@ -1,7 +1,6 @@
 import pygame
 from pygame.sprite import Sprite
 
-
 class Alien(Sprite):
 
     def __init__(self, ai_settings, screen):
@@ -13,7 +12,7 @@ class Alien(Sprite):
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
         self.rect.right = self.screen_rect.right
-
+        self.y = int
 
     def check_edges(self):
         # Zwraca wartość True, jeśłi obcy znajduje się przy krawędzi ekranu.
@@ -24,7 +23,6 @@ class Alien(Sprite):
             return True
 
     def update(self):
-        #Przesunięcie obcego w lewo
-        self.y += (self.ai_settings.alien_speed_factor /
-                        self.ai_settings.fleet_direction)
+        # Przesunięcie obcego w lewo
+        self.y += (self.ai_settings.alien_speed_factor / self.ai_settings.fleet_direction)
         self.rect.y = self.y
