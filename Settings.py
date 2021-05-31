@@ -1,7 +1,6 @@
 class Settings(object):
-
     def __init__(self):
-        #Ustawienia ekranu
+        # Ustawienia ekranu
         self.SCREEN_WIDTH = 1200
         self.SCREEN_HEIGHT = 820
         self.BG_COLOR = (255, 255, 255)
@@ -10,7 +9,7 @@ class Settings(object):
         self.bullet_speed_factor = 6
         self.boss_bullet_speed_factor = -12
         self.bullet_width = 15
-        self.bullet_height = 5
+        self.bullet_height = 555
         self.bullets_width = 10
         self.bullets_height = 22
         self.bullet_color = (102, 255, 102)
@@ -32,7 +31,6 @@ class Settings(object):
 
         self.alien_speed_factor = 7
         self.fleet_direction = -1
-
 
     def increase_speed(self):
         self.alien_speed_factor *= self.speedup_scale
