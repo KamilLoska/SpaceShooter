@@ -1,18 +1,18 @@
 import pygame
 from pygame.sprite import Sprite
-import time
 
 
 class Explosion(Sprite):
     def __init__(self, bosss):
         super(Explosion, self).__init__()
         self.images = []
+        self.bosss = bosss
 
         for num in range(10):
             img = pygame.image.load(f"C:/Users/Kamil/Pictures/animations/ani{num}.png").convert_alpha()
             img = pygame.transform.scale(img, (200, 200))
             if num > 5:
-                img = pygame.transform.scale(img,  (0,0))
+                img = pygame.transform.scale(img,  (0, 0))
             self.images.append(img)
         self.index = 0
         self.image = self.images[self.index]
@@ -23,8 +23,8 @@ class Explosion(Sprite):
             self.rect.center = rect.center
         self.counter = 0
 
-    def update(self,explosion, bosss):
-        for boss in bosss:
+    def update(self):
+        for boss in self.bosss:
             rect = boss.rect.x
             self.rect.center = boss.rect.center
         explosion_speed = 4
