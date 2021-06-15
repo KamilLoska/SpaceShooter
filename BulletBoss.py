@@ -1,6 +1,8 @@
 import pygame
 from pygame.sprite import Sprite
 from pygame.math import Vector2
+import sys
+import os
 
 
 class PociskBoss(Sprite):
@@ -12,7 +14,7 @@ class PociskBoss(Sprite):
         self.screen = screen
         self.bosss = bosss
 
-        self.image = pygame.image.load('C:/Users/Kamil/Pictures/bossbullet.png').convert_alpha()
+        self.image = pygame.image.load(resource_path('bossbullet.png')).convert_alpha()
         self.image = pygame.Surface([8, 5])
         pygame.Surface.fill(self.image, (255, 31, 31))
         target = Vector2(player.rect.centerx, player.rect.centery)
@@ -28,9 +30,14 @@ class PociskBoss(Sprite):
             self.velocity = direction.normalize() * 14
             self.y = float(self.rect.y)
             self.x = float(self.rect.x)
-            
+
     def update(self):
         # Poruszanie pociskiem po ekranie
         for boss in self.bosss.copy():
             self.position += self.velocity  # Update the position vector
             self.rect.center = self.position
+
+def resource_path(relative_path):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
