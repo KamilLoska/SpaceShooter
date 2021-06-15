@@ -1,5 +1,7 @@
 import pygame
 from pygame.sprite import Sprite
+import sys
+import os
 
 class Alien(Sprite):
 
@@ -7,7 +9,7 @@ class Alien(Sprite):
         super(Alien, self).__init__()
         self.ai_settings = ai_settings
         self.screen = screen
-        self.image = pygame.image.load('C:/Users/Kamil/Pictures/alien7.png')
+        self.image = pygame.image.load(resource_path('alien7.png'))
         self.image.set_colorkey((255, 255, 255))
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
@@ -26,3 +28,8 @@ class Alien(Sprite):
         # Przesunięcie obcego w lewo
         self.y += (self.ai_settings.alien_speed_factor / self.ai_settings.fleet_direction)
         self.rect.y = self.y
+
+def resource_path(relative_path):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
