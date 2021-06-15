@@ -1,5 +1,7 @@
 import pygame
 from pygame.sprite import Sprite
+import sys
+import os
 
 
 class Explosion(Sprite):
@@ -9,7 +11,7 @@ class Explosion(Sprite):
         self.bosss = bosss
 
         for num in range(10):
-            img = pygame.image.load(f"C:/Users/Kamil/Pictures/animations/ani{num}.png").convert_alpha()
+            img = pygame.image.load(resource_path(f"animations/ani{num}.png")).convert_alpha()
             img = pygame.transform.scale(img, (200, 200))
             if num > 5:
                 img = pygame.transform.scale(img,  (0, 0))
@@ -38,3 +40,8 @@ class Explosion(Sprite):
 
         if self.index >= len(self.images) - 1 and self.counter >= explosion_speed:
             self.kill()
+
+def resource_path(relative_path):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
