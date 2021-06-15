@@ -1,7 +1,8 @@
 import pygame
 pygame.init()
 pygame.mixer.pre_init(44100, -16, 2, 512)
-
+import os
+import sys
 
 class HP_Bar(object):
 
@@ -20,7 +21,7 @@ class HP_Bar(object):
         for boss in bosss.sprites():
             for naboje in new_bullet.sprites():
                 if boss.rect.x < naboje.rect.x < boss.rect.x + 150 and boss.rect.y < naboje.rect.y < boss.rect.y + 200:
-                    self.hit_sound = pygame.mixer.Sound('C:/Users/Kamil/Pictures/hitboss.wav')
+                    self.hit_sound = pygame.mixer.Sound(resource_path('hitboss.wav'))
                     self.Health -= 5
                     self.hit_sound.play()
                     new_bullet.remove(naboje)
@@ -31,3 +32,9 @@ class HP_Bar(object):
             for bosik in bosss:
                 pygame.draw.rect(self.screen, (255, 0, 0), (bosik.rect.x + 3, bosik.rect.y - 35, 180, 15))
                 pygame.draw.rect(self.screen, (0, 255, 0), (bosik.rect.x + 3, bosik.rect.y - 35, self.Health, 15))
+
+
+def resource_path(relative_path):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
