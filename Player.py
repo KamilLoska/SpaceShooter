@@ -1,17 +1,21 @@
+from pygame.mixer import SoundType
 from pygame.sprite import Sprite
 import pygame
 pygame.init()
 pygame.mixer.pre_init(44100, -16, 2, 512)
+import os
+import sys
 
 
 class Character(Sprite):
+
     def __init__(self, ai_settings, screen):
         super(Character, self).__init__()
         self.screen = screen
         self.ai_settings = ai_settings
-        self.hit_sound = pygame.mixer.Sound('C:/Users/Kamil/Pictures/hit.wav')
-        self.image = pygame.image.load('C:/Users/Kamil/Pictures/kolo5.png').convert_alpha()
-        # self.image.set_colorkey((255, 255, 255)) FULL PRZEZROCZYSTOŚĆ OBRAZKA(USUWA TŁO)
+        self.hit_sound = pygame.mixer.Sound(resource_path('hit.wav'))
+        self.image = pygame.image.load(resource_path('kolo5.png')).convert_alpha()
+        #self.image.set_colorkey((255, 255, 255)) #FULL PRZEZROCZYSTOŚĆ OBRAZKA(USUWA TŁO)
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
         self.moving_down = False
@@ -60,3 +64,9 @@ class Character(Sprite):
     def player_center(self):
         self.rect.centerx = self.screen_rect.centerx
         self.rect.midleft = self.screen_rect.midleft
+
+
+def resource_path(relative_path):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
