@@ -1,4 +1,3 @@
-import sys
 import pygame
 from Bullet import Pocisk
 from Alien import Alien
@@ -11,6 +10,14 @@ from Animations import Explosion
 clock = pygame.time.Clock()
 pygame.init()
 pygame.mixer.pre_init(44100, -16, 2, 512)
+import sys
+import os
+
+
+def resource_path(relative_path):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
 
 
 def update_bullets(ai_settings, stats, sb, new_bullet, aliens):
@@ -55,7 +62,7 @@ def check_keydown_events(event, ai_settings, screen, player, new_bullet, stats):
 
 def fire_bullet(ai_settings, screen, player, new_bullet):
     # wystrzelenie nowego pociskuu, jeżeli nie przekroczono określonego limitu - 3 kul
-    shoot_sound = pygame.mixer.Sound('C:/Users/Kamil/Pictures/hit2.wav')
+    shoot_sound = pygame.mixer.Sound(resource_path('hit2.wav'))
     if len(new_bullet) <= ai_settings.bullets_allowed and len(new_bullet) < ai_settings.SCREEN_WIDTH:
         bullets = Pocisk(ai_settings, screen, player)
         new_bullet.add(bullets)
@@ -71,7 +78,6 @@ def fire_boss_bullet(ai_settings, screen, bosss, boss_bullet, player, pos, HPbar
 
 
 def fire_extra_bullet(ai_settings, screen, bosss, player, pos, extra_bullet, HPbar):
-    # fire_extra = pygame.mixer.Sound('C:/Users/Kamil/Pictures/hit2.wav')
     if len(extra_bullet) <= float(ai_settings.extra_bullet_allowed):
         extrabullet = BulletPlus(ai_settings, screen, bosss, player, pos)
         extra_bullet.add(extrabullet)
@@ -154,8 +160,8 @@ def create_alien(ai_settings, screen, aliens, alien_number, row_number):
     aliens.add(alien)
 
 
-def create_boss(ai_settings, screen, bosss, player, boss_bullet, all_sprites):
-    Boss = boss(ai_settings, screen, bosss, player, boss_bullet, all_sprites)
+def create_boss(ai_settings, screen, bosss):
+    Boss = boss(ai_settings, screen, bosss)
     boss_height = Boss.rect.height
     Boss.y = boss_height
     Boss.rect.y = Boss.y
@@ -250,7 +256,7 @@ def update_aliens(ai_settings, stats, sb, screen, player, aliens, new_bullet):
     # uaktualnienie położenia wszystkich obcych we flocie
     check_fleet_edges(ai_settings, aliens)
     aliens.update()
-    hit_sound = pygame.mixer.Sound('C:/Users/Kamil/Pictures/hit.wav')
+    hit_sound = pygame.mixer.Sound(resource_path('hit.wav'))
     # Wykrycie kolizji między statkiem a obcymi
     if pygame.sprite.spritecollideany(player, aliens):
         hit_sound.play()
@@ -281,14 +287,14 @@ def alien_hit_player(ai_settings, stats, sb, screen, player, aliens, new_bullet)
 
 
 def create_bosss(ai_settings, screen, aliens, bosss, boss_bullet, new_bullet, extra_bullet, HPbar, player, explosion):
-    destroy = pygame.mixer.Sound('C:/Users/Kamil/Pictures/BossDestroyed.wav')
+    destroy = pygame.mixer.Sound(resource_path('BossDestroyed.wav'))
     aliens.empty()
     bosss.draw(screen)
     boss_bullet.draw(screen)
     extra_bullet.draw(screen)
     HPbar.blitme(bosss)
     HPbar.hit(bosss, new_bullet, boss_bullet, ai_settings, extra_bullet)
-    player.hit(bosss, boss_bullet, extra_bullet)
+    player.hit(boss_bullet, extra_bullet)
     if HPbar.Health <= 4:
         explosion.draw(screen)
         hit = pygame.sprite.groupcollide(new_bullet, bosss, False, False)
@@ -313,7 +319,7 @@ def time_txt(screen, txt, youlost):
     screen.blit(txt, (480, 500))
 
 
-def update_screen(ai_settings, screen, player, bosss, deszcz, aliens, starr, new_bullet, boss_bullet,
+def update_screen(ai_settings, screen, player, bosss, aliens, new_bullet, boss_bullet,
                   HPbar, extra_bullet, explosion, stats, sb, pause_button):
     player.blitme(HPbar, screen)
     sb.show_score()
