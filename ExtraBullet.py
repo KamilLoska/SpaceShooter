@@ -1,6 +1,8 @@
 import pygame
 from pygame.sprite import Sprite
 from pygame.math import Vector2
+import sys
+import os
 
 
 class BulletPlus(Sprite):
@@ -11,7 +13,7 @@ class BulletPlus(Sprite):
         self.ai_settings = ai_settings
         self.screen = screen
         self.bosss = bosss
-        self.image = pygame.image.load('C:/Users/Kamil/Pictures/ExtraBullet.png').convert_alpha()
+        self.image = pygame.image.load(resource_path('ExtraBullet.png')).convert_alpha()
         target = Vector2(player.rect.x, player.rect.y)
 
         self.rect = self.image.get_rect(center=pos)
@@ -31,3 +33,7 @@ class BulletPlus(Sprite):
             # Poruszanie się pociskiem po ekranie
             self.position += self.velocity
             self.rect.center = self.position
+def resource_path(relative_path):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
