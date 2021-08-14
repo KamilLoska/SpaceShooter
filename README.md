@@ -32,5 +32,7 @@ How To Play
 
 If you don't have Python or Pygame installed, you can simply double click the .exe file to play the game. Note: The .exe file needs to stay in the same directory as the sounds, images, and font folders.
 
+If you have the correct version of Python and Pygame installed, you can run the program in the command prompt / terminal.
+
 
 
