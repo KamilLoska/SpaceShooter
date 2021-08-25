@@ -114,11 +114,11 @@ def main():
             #gf.update_rain(ai_settings, deszcz)
             gf.update_aliens(ai_settings, stats, sb, screen, player, aliens, new_bullet)
             boss_bullet.update()
-           # gf.boss_bullet_update(ai_settings, boss_bullet)
-            #extra_bullet.update()
-            #gf.extra_bullet_update(ai_settings, extra_bullet)
-            #gf.update_animation(explosion)
-        #gf.update_boss(ai_settings, bosss)
+            gf.boss_bullet_update(ai_settings, boss_bullet)
+            extra_bullet.update()
+            gf.extra_bullet_update(ai_settings, extra_bullet)
+            gf.update_animation(explosion)
+        gf.update_boss(ai_settings, bosss)
         gf.update_screen(ai_settings, screen, player, bosss, aliens, new_bullet, boss_bullet,
                          HPbar, extra_bullet, explosion, stats, sb, pause_button)
         if not stats.game_active:
