@@ -11,13 +11,11 @@ class HP_Bar(object):
         super(HP_Bar, self).__init__()
         self.ai_settings = ai_settings
         self.screen = screen
-
         self.image = pygame.Surface((75, 25)).convert_alpha()
         self.screen_rect = screen.get_rect()
         self.Health = 180
 
     def hit(self, bosss, new_bullet, boss_bullet, ai_settings, extra_bullet):
-
         for boss in bosss.sprites():
             for naboje in new_bullet.sprites():
                 if boss.rect.x < naboje.rect.x < boss.rect.x + 150 and boss.rect.y < naboje.rect.y < boss.rect.y + 200:
@@ -27,7 +25,6 @@ class HP_Bar(object):
                     new_bullet.remove(naboje)
 
     def blitme(self, bosss):
-
         if self.Health >= 0:
             for bosik in bosss:
                 pygame.draw.rect(self.screen, (255, 0, 0), (bosik.rect.x + 3, bosik.rect.y - 35, 180, 15))
