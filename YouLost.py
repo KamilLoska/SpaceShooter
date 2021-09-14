@@ -6,7 +6,6 @@ import os
 class YouLost(object):
 
     def __init__(self, ai_settings, screen):
-
         self.screen = screen
         self.ai_settings = ai_settings
         self.image = pygame.image.load(resource_path('youlost2.png')).convert_alpha()
