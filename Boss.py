@@ -14,8 +14,6 @@ class boss(Sprite):
         self.image.set_colorkey((255, 255, 255))
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
-        # set rect of object on right site of screen
-
         self.rect.right = self.screen_rect.right
         self.x = float(self.rect.centerx)
         self.y = float(self.rect.centery)
