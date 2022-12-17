@@ -34,7 +34,7 @@ Keys
 | Move up | <kbd>up</kbd>  |  
 | Move down | <kbd>down</kbd>  |
 | Shoot | <kbd>Space</kbd>  |
-| Pause | <kbd>'P'</kbd>  |
+| Pause | <kbd>'Z'</kbd>  |
 
 
 How to install
