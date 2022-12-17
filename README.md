@@ -29,20 +29,27 @@ Game also has the option to pause by clicking "Z" key.
 
 
 Keys 
-| Heading 1 |  
-|-----------|
-| Cell A1 | 
-| Cell B1 |
+|  | Button  |  
+|-----------|:-----------: 
+| Move up | <kbd>up</kbd>  |  
+| Move down | <kbd>down</kbd>  |
+| Shoot | <kbd>Space</kbd>  |
+| Pause | <kbd>'P'</kbd>  |
 
 
-
-How To Play
+How to install
 ---------------------------------------------------------
 ```
 > cd SpaceShooter
 >> python main.py
 ```
-If you don't have Python or Pygame installed (pip install pygame), you can simply double click the .exe file to play the game. Note: The .exe file needs to stay in the same directory as the sounds, images, and font folders.
+
+
+
+How To Play
+---------------------------------------------------------
+
+If you don't have Python or Pygame installed, you can simply double click the .exe file to play the game. Note: The .exe file needs to stay in the same directory as the sounds, images, and font folders.
 
 If you have the correct version of Python and Pygame installed, you can run the program in the command prompt / terminal.
 
