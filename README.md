@@ -28,7 +28,7 @@ Game also has the option to pause by clicking "Z" key.
 ![BossFight (1)](https://user-images.githubusercontent.com/72936376/119698755-d9c31000-be51-11eb-984e-2fc63ffa985e.png)
 
 
-# Controls
+## Controls
 
 |  | Button  |  
 |-----------|:-----------: 
@@ -38,7 +38,7 @@ Game also has the option to pause by clicking "Z" key.
 | Pause | <kbd>'Z'</kbd>  |
 
 
-# How to install
+## How to install
 ---------------------------------------------------------
 ```
 > cd SpaceShooter
@@ -47,7 +47,7 @@ Game also has the option to pause by clicking "Z" key.
 
 
 
-# How To Play
+## How To Play
 ---------------------------------------------------------
 
 If you don't have Python or Pygame installed, you can simply double click the .exe file to play the game. Note: The .exe file needs to stay in the same directory as the sounds, images, and font folders.
